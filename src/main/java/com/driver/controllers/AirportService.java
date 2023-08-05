@@ -1,6 +1,8 @@
 package com.driver.controllers;
 
 import com.driver.model.Airport;
+import com.driver.model.Flight;
+import com.driver.model.Passenger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -13,7 +15,6 @@ public class AirportService {
     public void addAirport(Airport airport){
         airportRepositoryObject.addAirport(airport);
     }
-
     public String getLargestAirportName() {
         HashMap<String, Airport> airportDb = airportRepositoryObject.getAirportDb();
         if(airportDb.size() == 0) return "";
@@ -35,5 +36,11 @@ public class AirportService {
             }
         }
         return largestAirportName;
+    }
+    public void addFlight(Flight flight){
+        airportRepositoryObject.addFlight(flight);
+    }
+    public void addPassenger(Passenger passenger){
+        airportRepositoryObject.addPassenger(passenger);
     }
 }

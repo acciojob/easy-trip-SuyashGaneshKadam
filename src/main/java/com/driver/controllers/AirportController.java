@@ -101,7 +101,8 @@ public class AirportController {
     public String addFlight(@RequestBody Flight flight){
 
         //Return a "SUCCESS" message string after adding a flight.
-       return null;
+        airportServiceObject.addFlight(flight);
+       return "SUCCESS";
     }
 
 
@@ -132,8 +133,8 @@ public class AirportController {
 
         //Add a passenger to the database
         //And return a "SUCCESS" message if the passenger has been added successfully.
-
-       return null;
+        airportServiceObject.addPassenger(passenger);
+       return "SUCCESS";
     }
 
 
