@@ -13,15 +13,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.*;
 
 @RestController
 public class AirportController {
+    AirportService airportServiceObject = new AirportService();
     @PostMapping("/add_airport")
     public String addAirport(@RequestBody Airport airport){
 
         //Simply add airport details to your database
         //Return a String message "SUCCESS"
-
+        airportServiceObject.addAirport(airport);
         return "SUCCESS";
     }
 
@@ -31,7 +33,7 @@ public class AirportController {
         //Largest airport is in terms of terminals. 3 terminal airport is larger than 2 terminal airport
         //Incase of a tie return the Lexicographically smallest airportName
 
-       return null;
+       return airportServiceObject.getLargestAirportName();
     }
 
     @GetMapping("/get-shortest-time-travel-between-cities")
