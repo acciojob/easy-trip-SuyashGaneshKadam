@@ -76,6 +76,21 @@ public class AirportService {
         }
         return shortestDuration;
     }
+    public int getNumberOfPeopleOn(Date date,String airportName){
+        HashMap<Integer, Flight> flightDb = airportRepositoryObject.getFlightDb();
+        HashMap<String, Airport> airportDb = airportRepositoryObject.getAirportDb();
+        if(airportDb.size() == 0 || !airportDb.containsKey(airportName)) return 0;
+        int countOfPeopleOnAirport = 0;
+        for(Flight flight : flightDb.values()){
+            if(flight.getFlightDate().equals(date)){
+                City currentAirportCity = airportDb.get(airportName).getCity();
+                if(currentAirportCity == flight.getFromCity() || currentAirportCity == flight.getToCity()){
+                    countOfPeopleOnAirport++;
+                }
+            }
+        }
+        return countOfPeopleOnAirport;
+    }
     public void addPassenger(Passenger passenger){
         airportRepositoryObject.addPassenger(passenger);
     }
