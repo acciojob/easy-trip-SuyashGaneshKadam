@@ -47,6 +47,7 @@ public class AirportService {
         HashMap<Integer, Flight> flightDb = airportRepositoryObject.getFlightDb();
         HashMap<String, Airport> airportDb = airportRepositoryObject.getAirportDb();
         if(!flightDb.containsKey(flightId)) return null;
+        if(airportDb.size() == 0) return null;
         String airportName = null;
         City cityName = flightDb.get(flightDb).getFromCity();
         for(Airport airport : airportDb.values())
