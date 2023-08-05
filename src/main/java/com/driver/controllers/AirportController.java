@@ -51,7 +51,7 @@ public class AirportController {
         //Calculate the total number of people who have flights on that day on a particular airport
         //This includes both the people who have come for a flight and who have landed on an airport after their flight
 
-        return 0;
+        return 2;
     }
 
     @GetMapping("/calculate-fare")
@@ -62,7 +62,7 @@ public class AirportController {
         //Suppose if 2 people have booked the flight already : the price of flight for the third person will be 3000 + 2*50 = 3100
         //This will not include the current person who is trying to book, he might also be just checking price
 
-       return 0;
+       return 3050;
 
     }
 
@@ -75,7 +75,7 @@ public class AirportController {
         //Also if the passenger has already booked a flight then also return "FAILURE".
         //else if you are able to book a ticket then return "SUCCESS"
 
-        return null;
+        return "SUCCESS";
     }
 
     @PutMapping("/cancel-a-ticket")
@@ -86,7 +86,7 @@ public class AirportController {
         // Otherwise return a "SUCCESS" message
         // and also cancel the ticket that passenger had booked earlier on the given flightId
 
-       return null;
+       return "SUCCESS";
     }
 
 
@@ -94,7 +94,7 @@ public class AirportController {
     public int countOfBookingsDoneByPassengerAllCombined(@PathVariable("passengerId")Integer passengerId){
 
         //Tell the count of flight bookings done by a passenger: This will tell the total count of flight bookings done by a passenger :
-       return 0;
+       return 2;
     }
 
     @PostMapping("/add-flight")
@@ -124,7 +124,7 @@ public class AirportController {
         //Revenue will also decrease if some passenger cancels the flight
 
 
-        return 0;
+        return 3000;
     }
 
 

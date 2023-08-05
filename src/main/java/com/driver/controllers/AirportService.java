@@ -49,7 +49,7 @@ public class AirportService {
         if(flightDb.size() == 0) return null;
         if(airportDb.size() == 0) return null;
         if(!flightDb.containsKey(flightId)) return null;
-        String airportName = null;
+        String airportName = "";
         City cityName = flightDb.get(flightDb).getFromCity();
         for(Airport airport : airportDb.values())
         {
@@ -59,7 +59,7 @@ public class AirportService {
                 break;
             }
         }
-        return airportName;
+        return airportName.equals("") ? null : airportName;
     }
     public double getShortestDurationOfPossibleBetweenTwoCities(City fromCity, City toCity){
 
