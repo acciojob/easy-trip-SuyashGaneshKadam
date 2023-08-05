@@ -10,6 +10,8 @@ public class AirportRepository {
     HashMap<String, Airport> airportDb = new HashMap<>();
     HashMap<Integer, Flight> flightDb = new HashMap<>();
     HashMap<Integer, Passenger> passengerDb = new HashMap<>();
+    HashMap<Integer, List<Flight>> passengerFlightBookingDb = new HashMap<>();
+    HashMap<Integer, List<Passenger>> flightPassengerBookingDb = new HashMap<>();
     public void addAirport(Airport airport){
         airportDb.put(airport.getAirportName(), airport);
     }
@@ -26,5 +28,20 @@ public class AirportRepository {
     }
     public void addPassenger(Passenger passenger){
         passengerDb.put(passenger.getPassengerId(), passenger);
+    }
+    public HashMap<Integer, Passenger> getPassengerDb()
+    {
+        return passengerDb;
+    }
+    public HashMap<Integer, List<Flight>> getPassengerFlightBookingDb(){ return passengerFlightBookingDb; }
+    public HashMap<Integer, List<Passenger>> getFlightPassengerBookingDb(){ return flightPassengerBookingDb; }
+
+    public void bookATicket(Integer flightId, Integer passengerId){
+        List<Flight> flights = passengerFlightBookingDb.getOrDefault(passengerId, new ArrayList<>());
+        flights.add(flightDb.get(flightId));
+        passengerFlightBookingDb.put(passengerId, flights);
+        List<Passenger> passengers = flightPassengerBookingDb.getOrDefault(flightId, new ArrayList<>());
+        passengers.add(passengerDb.get(passengerId));
+        flightPassengerBookingDb.put(flightId, passengers);
     }
 }

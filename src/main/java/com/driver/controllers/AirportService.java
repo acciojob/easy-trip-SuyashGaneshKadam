@@ -91,6 +91,21 @@ public class AirportService {
         }
         return countOfPeopleOnAirport;
     }
+    public String bookATicket(Integer flightId, Integer passengerId){
+        HashMap<Integer, List<Passenger>> flightPassengerBookingDb = airportRepositoryObject.getFlightPassengerBookingDb();
+        HashMap<Integer, Flight> flightDb = airportRepositoryObject.getFlightDb();
+        HashMap<Integer, Passenger> passengerDb = airportRepositoryObject.getPassengerDb();
+        if(!flightDb.containsKey(flightId) || !passengerDb.containsKey(passengerId)) { return "FAILURE"; }
+        if(flightPassengerBookingDb.containsKey(flightId))
+        {
+            int passengersWhoBookedFlight = flightPassengerBookingDb.get(flightId).size();
+            int maxCapacityOfFlight = flightDb.get(flightId).getMaxCapacity();
+            if(passengersWhoBookedFlight == maxCapacityOfFlight){ return "FAILURE"; }
+            if(flightPassengerBookingDb.get(flightId).contains(passengerDb.get(passengerId))){ return "FAILURE"; }
+        }
+        airportRepositoryObject.bookATicket(flightId, passengerId);
+        return "SUCCESS";
+    }
     public void addPassenger(Passenger passenger){
         airportRepositoryObject.addPassenger(passenger);
     }
