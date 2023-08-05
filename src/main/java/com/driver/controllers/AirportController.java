@@ -42,7 +42,7 @@ public class AirportController {
         //Find the duration by finding the shortest flight that connects these 2 cities directly
         //If there is no direct flight between 2 cities return -1.
 
-       return 0;
+       return airportServiceObject.getShortestDurationOfPossibleBetweenTwoCities(fromCity, toCity);
     }
 
     @GetMapping("/get-number-of-people-on-airport-on/{date}")
@@ -112,7 +112,7 @@ public class AirportController {
         //We need to get the starting airportName from where the flight will be taking off (Hint think of City variable if that can be of some use)
         //return null incase the flightId is invalid or you are not able to find the airportName
 
-        return null;
+        return airportServiceObject.getAirportNameFromFlightId(flightId);
     }
 
 

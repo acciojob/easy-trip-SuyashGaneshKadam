@@ -20,6 +20,10 @@ public class AirportRepository {
     public void addFlight(Flight flight){
         flightDb.put(flight.getFlightId(), flight);
     }
+    public HashMap<Integer, Flight> getFlightDb()
+    {
+        return flightDb;
+    }
     public void addPassenger(Passenger passenger){
         passengerDb.put(passenger.getPassengerId(), passenger);
     }
