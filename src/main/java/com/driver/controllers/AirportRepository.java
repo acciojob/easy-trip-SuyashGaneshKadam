@@ -40,8 +40,18 @@ public class AirportRepository {
         List<Flight> flights = passengerFlightBookingDb.getOrDefault(passengerId, new ArrayList<>());
         flights.add(flightDb.get(flightId));
         passengerFlightBookingDb.put(passengerId, flights);
+
         List<Passenger> passengers = flightPassengerBookingDb.getOrDefault(flightId, new ArrayList<>());
         passengers.add(passengerDb.get(passengerId));
+        flightPassengerBookingDb.put(flightId, passengers);
+    }
+    public void cancelATicket(Integer flightId,Integer passengerId){
+        List<Flight> flights = passengerFlightBookingDb.get(passengerId);
+        flights.remove(flightDb.get(flightId));
+        passengerFlightBookingDb.put(passengerId, flights);
+
+        List<Passenger> passengers = flightPassengerBookingDb.get(flightId);
+        passengers.remove(passengerDb.get(passengerId));
         flightPassengerBookingDb.put(flightId, passengers);
     }
 }

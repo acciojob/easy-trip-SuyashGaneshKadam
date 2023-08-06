@@ -106,6 +106,17 @@ public class AirportService {
         airportRepositoryObject.bookATicket(flightId, passengerId);
         return "SUCCESS";
     }
+    public String cancelATicket(Integer flightId,Integer passengerId){
+        HashMap<Integer, List<Flight>> passengerFlightBookingDb = airportRepositoryObject.getPassengerFlightBookingDb();
+        HashMap<Integer, List<Passenger>> flightPassengerBookingDb = airportRepositoryObject.getFlightPassengerBookingDb();
+        HashMap<Integer, Flight> flightDb = airportRepositoryObject.getFlightDb();
+        HashMap<Integer, Passenger> passengerDb = airportRepositoryObject.getPassengerDb();
+        if(!flightDb.containsKey(flightId) || !passengerDb.containsKey(passengerId) || !flightPassengerBookingDb.containsKey(flightId) || !passengerFlightBookingDb.containsKey(passengerId))
+        { return "FAILURE"; }
+        if(!passengerFlightBookingDb.get(passengerId).contains(flightDb.get(flightId))){ return "FAILURE"; }
+        airportRepositoryObject.cancelATicket(flightId, passengerId);
+        return "SUCCESS";
+    }
     public void addPassenger(Passenger passenger){
         airportRepositoryObject.addPassenger(passenger);
     }
