@@ -91,6 +91,11 @@ public class AirportService {
         }
         return countOfPeopleOnAirport;
     }
+    public int calculateFlightFare(Integer flightId){
+        HashMap<Integer, List<Passenger>> flightPassengerBookingDb = airportRepositoryObject.getFlightPassengerBookingDb();
+        if(flightPassengerBookingDb.size() == 0) { return 3000; }
+        return 3000 + flightPassengerBookingDb.get(flightId).size() * 50;
+    }
     public String bookATicket(Integer flightId, Integer passengerId){
         HashMap<Integer, List<Passenger>> flightPassengerBookingDb = airportRepositoryObject.getFlightPassengerBookingDb();
         HashMap<Integer, Flight> flightDb = airportRepositoryObject.getFlightDb();
@@ -116,6 +121,13 @@ public class AirportService {
         if(!passengerFlightBookingDb.get(passengerId).contains(flightDb.get(flightId))){ return "FAILURE"; }
         airportRepositoryObject.cancelATicket(flightId, passengerId);
         return "SUCCESS";
+    }
+    public int countOfBookingsDoneByPassengerAllCombined(@PathVariable("passengerId")Integer passengerId){
+        HashMap<Integer, List<Flight>> passengerFlightBookingDb = airportRepositoryObject.getPassengerFlightBookingDb();
+        if(passengerFlightBookingDb.size() == 0) return 0;
+        else{
+            return passengerFlightBookingDb.get(passengerId).size();
+        }
     }
     public void addPassenger(Passenger passenger){
         airportRepositoryObject.addPassenger(passenger);
