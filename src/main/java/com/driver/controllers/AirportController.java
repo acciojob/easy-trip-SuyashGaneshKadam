@@ -62,7 +62,6 @@ public class AirportController {
         //This will not include the current person who is trying to book, he might also be just checking price
 
         return airportServiceObject.calculateFlightFare(flightId);
-       //return 3050;
 
     }
 
@@ -124,7 +123,7 @@ public class AirportController {
         //Revenue will also decrease if some passenger cancels the flight
 
 
-        return 3000;
+        return airportServiceObject.calculateFlightFare(flightId);
     }
 
 
