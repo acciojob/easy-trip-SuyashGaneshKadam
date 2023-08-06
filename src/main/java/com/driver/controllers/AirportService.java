@@ -96,6 +96,12 @@ public class AirportService {
         if(flightPassengerBookingDb.size() == 0) { return 3000; }
         return 3000 + flightPassengerBookingDb.get(flightId).size() * 50;
     }
+    public int calculateRevenueOfAFlight(@PathVariable("flightId")Integer flightId){
+        HashMap<Integer, List<Passenger>> flightPassengerBookingDb = airportRepositoryObject.getFlightPassengerBookingDb();
+        if(flightPassengerBookingDb.size() == 0) { return 3000; }
+        int noOfPassengers = flightPassengerBookingDb.get(flightId).size();
+        return 3000*noOfPassengers + 50*(noOfPassengers - 1) * (noOfPassengers - 1) * noOfPassengers/2;
+    }
     public String bookATicket(Integer flightId, Integer passengerId){
         HashMap<Integer, List<Passenger>> flightPassengerBookingDb = airportRepositoryObject.getFlightPassengerBookingDb();
         HashMap<Integer, Flight> flightDb = airportRepositoryObject.getFlightDb();
