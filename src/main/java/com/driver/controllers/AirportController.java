@@ -85,8 +85,8 @@ public class AirportController {
         // then return a "FAILURE" message
         // Otherwise return a "SUCCESS" message
         // and also cancel the ticket that passenger had booked earlier on the given flightId
-        airportServiceObject.cancelATicket(flightId, passengerId);
-       return "SUCCESS";
+
+        return airportServiceObject.cancelATicket(flightId, passengerId);
     }
 
 
